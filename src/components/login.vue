@@ -41,7 +41,7 @@
 export default {
   data() {
     return {
-      //登陆表单的数据绑定对象
+      // 登陆表单的数据绑定对象
       loginForm: {
         username: 'admin',
         password: '123456'
@@ -59,17 +59,17 @@ export default {
     }
   },
   methods: {
-    //重置表单数据
+    // 重置表单数据
     resetLoginForm() {
       this.$refs.loginFormRef.resetFields()
     },
-    //登陆组件根据预验证是否发起请求
+    // 登陆组件根据预验证是否发起请求
     login() {
       this.$refs.loginFormRef.validate(async vaild => {
         const { data: res } = await this.$http.post('login', this.loginForm)
         if (res.meta.status !== 200) return this.$message.error('登陆失败')
         this.$message.success('登陆成功')
-        //token值存入sessionStorage
+        // token值存入sessionStorage
         window.sessionStorage.setItem('token', res.data.token)
         this.$router.push('/home')
       })
