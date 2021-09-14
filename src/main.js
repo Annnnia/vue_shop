@@ -8,6 +8,14 @@ import './assets/css/global.css'
 import './assets/fonts/iconfont.css'
 // 导入表格树形商品的分类
 import TreeTable from 'vue-table-with-tree-grid'
+// 导入moment
+import Moment from 'moment'
+// 导入富文本编辑器
+import VueQuillEditor from 'vue-quill-editor'
+// 导入富文本对应的样式
+import 'quill/dist/quill.core.css' // import styles
+import 'quill/dist/quill.snow.css' // for snow theme
+import 'quill/dist/quill.bubble.css' // for bubble theme
 
 // 导入axios
 import axios from 'axios'
@@ -24,6 +32,12 @@ Vue.prototype.$http = axios
 Vue.config.productionTip = false
 
 Vue.component('tree-table', TreeTable)
+// 注册富文本编辑器组件
+Vue.use(VueQuillEditor)
+
+Vue.filter('fmtDate', function(value) {
+  return Moment(value).format('YYYY-MM-DD HH:mm:ss')
+})
 
 new Vue({
   router,
